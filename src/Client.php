@@ -3,6 +3,9 @@
 namespace Deploykit\Telegraph;
 
 use Deploykit\Telegraph\Entities\Account;
+use Deploykit\Telegraph\Entities\Page;
+use Deploykit\Telegraph\Entities\PageList;
+use Deploykit\Telegraph\Entities\PageViews;
 
 class Client
 {
@@ -79,6 +82,68 @@ class Client
         $response = json_decode($response->getBody()->getContents(), true);
 
         return new Account($response['result']);
+    }
+
+    public function createPage($account, $title, $content, $authorName = '', $authorUrl = '', $returnContent = false)
+    {
+        $accessToken = $this->getAccessToken($account);
+
+
+    }
+
+    public function editPage()
+    {
+
+    }
+
+    public function getPage($path, $returnContent = false)
+    {
+        $response = $this->http->post('/getPage', [
+            'json' => [
+                'path' => $path,
+                'return_content' => $returnContent
+            ]
+        ]);
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        return new Page($response['result']);
+    }
+
+    public function getPageList($account, $offset = 0, $limit = 50)
+    {
+        $response = $this->http->post('/getPageList', [
+            'json' => [
+                'access_token' => $this->getAccessToken($account),
+                'offset' => $offset,
+                'limit' => $limit
+            ]
+        ]);
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        return new PageList($response['result']);
+    }
+
+    public function getViews($path, $year = null, $month = null, $day = null, $hour = null)
+    {
+        $json = [
+            'path' => $path
+        ];
+
+        foreach (['year', 'month', 'day', 'hour'] as $period) {
+            if (!is_null($$period)) {
+                $json[$period] = $$period;
+            }
+        }
+
+        $response = $this->http->post('/getViews', [
+            'json' => $json
+        ]);
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        return new PageViews($response['result']);
     }
 
     /**

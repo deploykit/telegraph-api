@@ -6,7 +6,7 @@ class BaseEntity implements \ArrayAccess
 {
     protected $items = [];
 
-    public function __construct($items)
+    public function __construct(array $items)
     {
         $this->items = $items;
     }
