@@ -2,8 +2,8 @@
 
 namespace Deploykit\Telegraph;
 
-use Deploykit\Telegraph\Entities\Account;
 use Deploykit\Telegraph\Entities\Page;
+use Deploykit\Telegraph\Entities\Account;
 use Deploykit\Telegraph\Entities\PageList;
 use Deploykit\Telegraph\Entities\PageViews;
 
@@ -87,13 +87,10 @@ class Client
     public function createPage($account, $title, $content, $authorName = '', $authorUrl = '', $returnContent = false)
     {
         $accessToken = $this->getAccessToken($account);
-
-
     }
 
     public function editPage()
     {
-
     }
 
     public function getPage($path, $returnContent = false)
