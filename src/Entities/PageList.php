@@ -8,7 +8,7 @@ class PageList extends BaseEntity
     {
         parent::__construct($items);
 
-        $this->items['pages'] = array_map(function($item) {
+        $this->items['pages'] = array_map(function ($item) {
             return new Page($item);
         }, $this->items['pages']);
     }
