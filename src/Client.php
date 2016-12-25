@@ -6,6 +6,7 @@ use Deploykit\Telegraph\Entities\Page;
 use Deploykit\Telegraph\Entities\Account;
 use Deploykit\Telegraph\Entities\PageList;
 use Deploykit\Telegraph\Entities\PageViews;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Client
 {
@@ -124,15 +125,7 @@ class Client
 
     public function getViews($path, $year = null, $month = null, $day = null, $hour = null)
     {
-        $json = [
-            'path' => $path
-        ];
-
-        foreach (['year', 'month', 'day', 'hour'] as $period) {
-            if (!is_null($$period)) {
-                $json[$period] = $$period;
-            }
-        }
+        $json = array_filter(compact('path', 'year', 'month', 'day', 'hour'));
 
         $response = $this->http->post('/getViews', [
             'json' => $json
