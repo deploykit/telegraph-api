@@ -4,9 +4,9 @@ namespace Deploykit\Telegraph;
 
 use Deploykit\Telegraph\Entities\Page;
 use Deploykit\Telegraph\Entities\Account;
+use Symfony\Component\DomCrawler\Crawler;
 use Deploykit\Telegraph\Entities\PageList;
 use Deploykit\Telegraph\Entities\PageViews;
-use Symfony\Component\DomCrawler\Crawler;
 
 class Client
 {
