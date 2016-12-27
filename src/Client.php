@@ -87,11 +87,41 @@ class Client
 
     public function createPage($account, $title, $content, $authorName = '', $authorUrl = '', $returnContent = false)
     {
-        $accessToken = $this->getAccessToken($account);
+        $response = $this->http->post('/createPage', [
+            'json' => [
+                'access_token' => $this->getAccessToken($account),
+                'title' => $title,
+                'content' => $content,
+                'author_name' => $authorName,
+                'author_url' => $authorUrl,
+                'return_content' => $returnContent
+            ]
+        ]);
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        return new Page($response['result']);
     }
 
-    public function editPage()
+    public function editPage($account, $path, $title, $content, $authorName = null, $authorUrl = null, $returnContent = false)
     {
+        $json = array_filter([
+            'access_token' => $this->getAccessToken($account),
+            'path' => $path,
+            'title' => $title,
+            'content' => $content,
+            'author_name' => $authorName,
+            'author_url' => $authorUrl,
+            'return_content' => $returnContent
+        ]);
+
+        $response = $this->http->post('/editPage', [
+            'json' => $json
+        ]);
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        return new Page($response['result']);
     }
 
     public function getPage($path, $returnContent = false)
