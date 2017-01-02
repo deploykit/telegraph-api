@@ -35,8 +35,16 @@ Or you can manually update your require block and run `composer update` if you c
 ```
 
 ## Usage
+All methods in Telegraph Client class correspond to API methods that are described in [Telegraph API documentation](http://telegra.ph/api).
 
+```php
+$telegraph = new \Deploykit\Telegraph\Client();
 
+$telegraph->createAccount('Author', 'Author name', 'http://example.com');
+```
+
+All entities' classes implement ArrayAccess, so any property of any class can be accessed either in object style or in array style.
+For all methods that require `access_token`, you can either provide a string with your token or provide instance of `\Deploykit\Telegraph\Entities\Account` class.
 
 ## Changelog
 
