@@ -2,6 +2,6 @@
 
 All notable changes to `deploykit/telegraph-api` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 1.0.0 - 2017-01-02
 
-- initial release
+- Initial release with basic functionality

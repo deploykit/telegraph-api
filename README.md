@@ -12,6 +12,7 @@ This package lets you work with [telegra.ph](http://telegra.ph) API.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Changelog](#changelog)
+- [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
@@ -29,7 +30,7 @@ Or you can manually update your require block and run `composer update` if you c
 ```json
 {
     "require": {
-        "deploykit/telegraph-api": "~0.1.0"
+        "deploykit/telegraph-api": "~1.0.0"
     }
 }
 ```
@@ -49,6 +50,10 @@ For all methods that require `access_token`, you can either provide a string wit
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Roadmap
+
+All future features are documented in [Roadmap GitHub project](https://github.com/deploykit/telegraph-api/projects/1).
 
 ## Contributing
 
