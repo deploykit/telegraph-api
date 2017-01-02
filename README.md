@@ -1,9 +1,9 @@
 # Telegra.ph API for PHP
 
-[![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg)](https://packagist.org/packages/deploykit/telegraph-api)
+[![Packagist](https://img.shields.io/packagist/v/deploykit/telegraph-api.svg)](https://packagist.org/packages/deploykit/telegraph-api)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE.md)
 [![StyleCI](https://styleci.io/repos/76974544/shield?branch=master&style=flat)](https://styleci.io/repos/76974544)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/filp/whoops.svg)](https://scrutinizer-ci.com/g/deploykit/telegraph-api)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/deploykit/telegraph-api.svg)](https://scrutinizer-ci.com/g/deploykit/telegraph-api/)
 
 This package lets you work with [telegra.ph](http://telegra.ph) API.
 
