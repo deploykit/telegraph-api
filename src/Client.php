@@ -4,7 +4,8 @@ namespace Deploykit\Telegraph;
 
 use Deploykit\Telegraph\Entities\Page;
 use Deploykit\Telegraph\Entities\Account;
-use Symfony\Component\DomCrawler\Crawler;
+use Deploykit\Telegraph\Exceptions\TelegraphApiException;
+use Psr\Http\Message\ResponseInterface;
 use Deploykit\Telegraph\Entities\PageList;
 use Deploykit\Telegraph\Entities\PageViews;
 
@@ -29,9 +30,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Account($response['result']);
+        return new Account($this->handleResponse($response));
     }
 
     public function editAccountInfo($account, $shortName = '', $authorName = '', $authorUrl = '')
@@ -45,9 +44,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Account($response['result']);
+        return new Account($this->handleResponse($response));
     }
 
     public function getAccountInfo($account, $fields = ['short_name', 'author_name', 'author_url'])
@@ -67,9 +64,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Account($response['result']);
+        return new Account($this->handleResponse($response));
     }
 
     public function revokeAccessToken($account)
@@ -80,9 +75,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Account($response['result']);
+        return new Account($this->handleResponse($response));
     }
 
     public function createPage($account, $title, $content, $authorName = '', $authorUrl = '', $returnContent = false)
@@ -98,9 +91,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Page($response['result']);
+        return new Page($this->handleResponse($response));
     }
 
     public function editPage($account, $path, $title, $content, $authorName = null, $authorUrl = null, $returnContent = false)
@@ -119,9 +110,7 @@ class Client
             'json' => $json
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Page($response['result']);
+        return new Page($this->handleResponse($response));
     }
 
     public function getPage($path, $returnContent = false)
@@ -133,9 +122,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new Page($response['result']);
+        return new Page($this->handleResponse($response));
     }
 
     public function getPageList($account, $offset = 0, $limit = 50)
@@ -148,9 +135,7 @@ class Client
             ]
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new PageList($response['result']);
+        return new PageList($this->handleResponse($response));
     }
 
     public function getViews($path, $year = null, $month = null, $day = null, $hour = null)
@@ -161,9 +146,7 @@ class Client
             'json' => $json
         ]);
 
-        $response = json_decode($response->getBody()->getContents(), true);
-
-        return new PageViews($response['result']);
+        return new PageViews($this->handleResponse($response));
     }
 
     /**
@@ -177,5 +160,20 @@ class Client
         }
 
         return $account;
+    }
+
+    /**
+     * @param  \Psr\Http\Message\ResponseInterface  $response
+     * @return  array  mixed
+     */
+    protected function handleResponse(ResponseInterface $response)
+    {
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        if (!$response['ok']) {
+            throw new TelegraphApiException($response['error']);
+        }
+
+        return $response['result'];
     }
 }
