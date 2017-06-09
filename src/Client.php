@@ -3,11 +3,11 @@
 namespace Deploykit\Telegraph;
 
 use Deploykit\Telegraph\Entities\Page;
-use Deploykit\Telegraph\Entities\Account;
-use Deploykit\Telegraph\Exceptions\TelegraphApiException;
 use Psr\Http\Message\ResponseInterface;
+use Deploykit\Telegraph\Entities\Account;
 use Deploykit\Telegraph\Entities\PageList;
 use Deploykit\Telegraph\Entities\PageViews;
+use Deploykit\Telegraph\Exceptions\TelegraphApiException;
 
 class Client
 {
