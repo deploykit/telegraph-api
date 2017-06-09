@@ -30,7 +30,7 @@ Or you can manually update your require block and run `composer update` if you c
 ```json
 {
     "require": {
-        "deploykit/telegraph-api": "~1.0.0"
+        "deploykit/telegraph-api": "~1.1.0"
     }
 }
 ```
