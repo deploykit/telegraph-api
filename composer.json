@@ -2,12 +2,6 @@
   "name": "deploykit/telegraph-api",
   "type": "library",
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Alexey Plekhanov",
-      "email": "alex@deploykit.co"
-    }
-  ],
   "minimum-stability": "stable",
   "require": {
     "guzzlehttp/guzzle": "^6.2"
