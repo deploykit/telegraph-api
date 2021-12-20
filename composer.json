@@ -16,5 +16,8 @@
     "psr-4": {
       "Deploykit\\Telegraph\\": "src/"
     }
+  },
+  "suggest": {
+    "p7v/telegraph-api": "deploykit/telegraph-api is being moved and will be developed there"
   }
 }
