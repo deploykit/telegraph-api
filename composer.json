@@ -3,6 +3,12 @@
   "type": "library",
   "license": "MIT",
   "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Alex Plekhanov",
+      "email": "alex@p7v.app"
+    }
+  ],
   "require": {
     "guzzlehttp/guzzle": "^6.2"
   },
